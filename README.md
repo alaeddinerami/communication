@@ -1,115 +1,69 @@
-# 💬 Real-Time Chat Service
+# 🗨️ Enterprise Chat Service
 
-## 🏆 Project Objective
-Design and develop a **real-time chat service** focused on **performance, scalability, and security** for professional environments. This service includes an independent server and client, with security managed through an **IAM (Identity and Access Management)** service.
+Welcome to the **Enterprise Chat Service** project! This service is designed to support high-demand, secure, and scalable professional communication with real-time messaging, video, and voice capabilities. It’s an ideal solution for enterprises seeking an efficient and safe communication platform.
 
----
+## 🚀 Project Overview
 
-## 📋 Requirements
+Our goal is to create an independent chat service that prioritizes performance and data security. Utilizing an Identity and Access Management (IAM) system for secure authentication, this service delivers a smooth and authenticated user experience.
 
-### 🔄 Real-Time Messaging
-Use **WebRTC** and **WebSockets** for real-time message exchange.
+### Key Features
+- **Real-Time Messaging**: Instant messaging powered by WebRTC and WebSocket protocols.
+- **Private Messaging**: Secure direct communication between users.
+- **Friend System**: Friend requests and management for a personalized chat network.
+- **Public Channels**: General channels accessible to all users for open communication.
+- **Group Channels**: User-created, customizable channels, private or public.
+- **Invitations & Requests**: Real-time notifications for channel invites and friend requests.
+- **User Status**: Track online/offline presence within channels.
+- **Channel Management**: Admins control user roles and maintain channel quality.
+- **Temporary Rooms**: Scheduled channels for specific discussions.
+- **Data Backup**: Chat data is archived every 24 hours or upon session closure, with keyword analysis.
+- **Moderation Tools**: Bounce (temporary mute) and ban functionalities to manage user behavior.
+- **Rewards System**: Positive ratings unlock perks like message pinning.
+- **Safe Mode**: Enforce respectful interactions with admin moderation, assisted by AI.
 
-### 🔐 Private Chats
-Enable private messaging between friends or through accepted friend requests.
+## ⚙️ Technology Stack
 
-### 🤝 Friend System
-Allow users to send, manage, and accept friend requests via an intuitive interface.
+### Frontend
+- **React** with **TypeScript**
+- **Redux** for state management
+- **WebRTC** for real-time media communication
 
-### 🌐 General Channel
-Provide a shared channel for open communication among all users.
+### Backend
+- **NestJS** for API and WebSocket handling
+- **Jest** and **Supertest** for comprehensive testing
+- **Docker** for containerized deployment
 
-### 👫 Group Channels
-Allow users to create and manage private or public channels.
-
-### ✉️ Channel Invitations
-Offer an invitation system for private channels, with real-time notifications.
-
-### 🚨 Real-Time Notifications
-Notify users of friend requests, private channel invites, and direct messages in real-time.
-
-### 📃 List of Channels
-Display a clear list of all channels, with distinctions between public and private channels.
-
-### 🟢 Online/Offline Status
-Show real-time status updates for users’ online or offline status.
-
-### 👥 Member Panel
-Display active or offline users in each channel, updated in real-time.
-
-### ⏳ Temporary Rooms
-Enable temporary channels with predefined duration and schedule.
-
-### 💾 Data Backup
-After each public session ends (or every 24 hours), save chat data with metrics like most-used words.
-
-### 🚫 Moderation Tools (Bounce/Ban)
-Allow moderators to temporarily exclude users or permanently ban them from specific channels.
-
-### 🌟 Reward System
-Implement a reward system for highly-rated users, granting privileges like pinning messages.
-
-### 🛡️ Safe Channel Mode
-Allow channel creators to enable "Safe Channel" mode to enforce respect, with flagged or banned words filtered out.
+### Protocols
+- **WebSocket** for chat messaging
+- **REST API** for integration with microservices
 
 ---
 
-## 🛠️ Frontend Components
+## 🛠️ Installation & Setup
 
-- **Parent Component**: `RoomVoice` (manages room data).
-- **Child Component**: `RoomClient` (represents users within the room).
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-repo/chat-service.git
+   cd chat-service
 
-> *Tip:* Keep components focused on data management, without directly handling UI interactions.
+### Backend Setup
+**Install dependencies:
 
-### ⚙️ Technologies
+    cd backend
+    npm install
+    npm run start:dev
 
-- **Frontend**: React.js, TypeScript, Redux
-- **Backend**: NestJS, WebRTC
-- **Protocols**: WebSocket (real-time chat), REST API (integration with other microservices)
-- **Testing**: Jest, Supertest
-- **DevOps**: Docker, GitHub Actions for CI/CD
 
----
+### Frontend Setup
 
-## 🧪 Testing
+    cd ../frontend
+    npm install
+    npm run start
 
-- **Unit Tests**: Each service should have at least one test on both the backend and frontend.
-- **Integration Tests**: Test API endpoints thoroughly.
-- **Functional Tests**: Use Selenium to automate end-to-end functionality tests.
+    
 
----
 
-## 🐳 Containerization with Docker
 
-- **Dockerfile** and **docker-compose.yml** setup to isolate backend and enable independent testing environments.
 
-## 🚀 CI/CD Pipeline with GitHub Actions
 
-- **Build Pipeline**: Triggered on each commit to the repository.
-- **Testing**: Run Jest tests, blocking code that doesn’t pass unit and integration tests.
-- **Test Deployment**: Deploy each commit on the main branch to a test server for live feature testing.
 
----
-
-## 👥 Team Work
-
-- **Teamwork**: Assess collaboration, communication, and task division.
-- **Project Management**: Evaluate the use of project tools (e.g., Jira) and Git workflows.
-
----
-
-## 📝 Documentation
-
-- **Technical Documentation**: Comprehensive code and feature documentation.
-- **API Documentation**: List and explain all API endpoints.
-- **Installation & Run Guide**: Clear instructions for project setup.
-
----
-
-## 📊 Evaluation Criteria
-
-1. **Technical Quality**: Completeness and reliability of features.
-2. **Code & Architecture**: Quality, organization, and adherence to best practices.
-3. **Testing**: Minimum 80% test coverage, including unit and integration tests.
-4. **Collaboration**: Effective teamwork and task distribution.
-5. **Documentation & Presentation**: Quality and clarity of the final project presentation.
