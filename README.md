@@ -43,15 +43,15 @@ Our goal is to create an independent chat service that prioritizes performance a
 
 1. **Clone the Repository**
    ```bash
+   
    git clone https://github.com/your-repo/chat-service.git
    cd chat-service
 
 ### Backend Setup
-**Install dependencies:
 
     cd backend
     npm install
-    npm run start:dev
+    npm run start
 
 
 ### Frontend Setup
@@ -60,6 +60,9 @@ Our goal is to create an independent chat service that prioritizes performance a
     npm install
     npm run start
 
+👥 Contributing
+
+This project is open for collaboration! Fork the repository, submit PRs, and help enhance this platform for professional communication
     
 
 
