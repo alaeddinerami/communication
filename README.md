@@ -1,84 +1,115 @@
-# Project: Real-Time Chat Service
+# 💬 Real-Time Chat Service
 
-## Project Overview
-
-This project aims to develop a **real-time chat service** designed for professional use, focusing on performance, security, and scalability. The goal is to create a reliable, secure, and scalable solution for messaging, video conferencing, instant discussions, and voice channels, using best practices in security and identity management with an IAM (Identity and Access Management) service.
-
-## Context and Objectives
-
-The chat service should include:
-
-- **Real-Time Messaging** using WebRTC and WebSockets for fast exchanges.
-- **Private Chats** and a friend management system.
-- **Channel System**: public, private, and temporary channels, allowing users to create and manage their own groups.
-- **User Status** updates (online/offline) in real-time.
-- **Real-Time Notifications** for friend requests, channel invitations, and direct messages.
-- **Reward System** for well-rated users, allowing features like message pinning.
-- **Security Measures**: "Safe Channel" mode, where channel owners can set banned words or use language models for moderation.
-
-## Project Details
-
-- **Frontend**: React.js, TypeScript, Redux
-- **Backend**: NestJS, WebRTC for real-time communication
-- **Protocols**: WebSocket for chat and REST API for integration with other microservices
-- **Testing Tools**: Jest, Supertest for backend, Selenium for automated functional tests
-- **DevOps**: Docker for containerization, GitHub Actions for CI/CD
-
-## Key Functionalities
-
-1. **Real-Time Messaging**: Real-time message exchange with WebSockets.
-2. **Private and Group Chats**: Allows users to chat privately or within created groups.
-3. **Friend System**: Friend requests and management.
-4. **Notifications**: Real-time notifications for friend requests and new messages.
-5. **Member Panel**: Displays active and offline users in each channel.
-6. **Temporary Rooms**: Option to create temporary channels with defined time slots.
-7. **Data Backup**: Logs session data (e.g., commonly used words) after 24 hours or at the end of a public session.
-8. **Moderation Tools**: Moderators can "bounce" (24-hour restriction) or "ban" (permanent restriction) users.
-
-## Frontend Components
-
-- **Parent Component**: `RoomVoice` (handles room data).
-- **Child Component**: `RoomClient` (represents individual users).
-- Components should focus on data management without directly interacting with the UI.
-
-## Testing Strategy
-
-- **Unit Tests**: At least one test per service (backend and frontend).
-- **Integration Tests**: Endpoints should be tested for reliability.
-- **Functional Tests**: Selenium-based tests to automate end-to-end scenarios.
-
-## Containerization with Docker
-
-- Create a `Dockerfile` and `docker-compose.yml` for backend environment isolation.
-- Enables independent testing and simplifies deployment across environments.
-
-## CI/CD Pipeline with GitHub Actions
-
-1. **Build Pipeline**: Automatically triggered on each commit.
-2. **Testing Stage**: Executes Jest and integration tests.
-3. **Deployment**: Deploys to a test environment on each main branch commit.
-4. **Notifications**: Sends notifications for pipeline status updates via Slack or other team communication tools.
-
-## Project Management and Collaboration
-
-- **Version Control**: Git for code management and clear commit messages.
-- **Project Management**: Use tools like Jira for task allocation and workflow tracking.
-- **Team Collaboration**: Effective communication and task distribution following Agile Scrum standards.
-
-## Evaluation Criteria
-
-1. **Technical Quality**: Completeness and functionality of features.
-2. **Code and Architecture**: Code organization, clarity, and adherence to best practices.
-3. **Testing**: Minimum 80% coverage for unit and integration tests.
-4. **Teamwork**: Collaboration, task distribution, and adherence to deadlines.
-5. **Documentation**: Detailed API documentation and setup instructions.
-
-## Innovation and Creativity
-
-Bonus points for innovative solutions or extra features beyond the project requirements, demonstrating a proactive and creative approach.
+## 🏆 Project Objective
+Design and develop a **real-time chat service** focused on **performance, scalability, and security** for professional environments. This service includes an independent server and client, with security managed through an **IAM (Identity and Access Management)** service.
 
 ---
 
-**Project Start Date**: October 28, 2024  
-**Deadline**: November 17, 2024  
-**Group Work**: Teams of 3 members
+## 📋 Requirements
+
+### 🔄 Real-Time Messaging
+Use **WebRTC** and **WebSockets** for real-time message exchange.
+
+### 🔐 Private Chats
+Enable private messaging between friends or through accepted friend requests.
+
+### 🤝 Friend System
+Allow users to send, manage, and accept friend requests via an intuitive interface.
+
+### 🌐 General Channel
+Provide a shared channel for open communication among all users.
+
+### 👫 Group Channels
+Allow users to create and manage private or public channels.
+
+### ✉️ Channel Invitations
+Offer an invitation system for private channels, with real-time notifications.
+
+### 🚨 Real-Time Notifications
+Notify users of friend requests, private channel invites, and direct messages in real-time.
+
+### 📃 List of Channels
+Display a clear list of all channels, with distinctions between public and private channels.
+
+### 🟢 Online/Offline Status
+Show real-time status updates for users’ online or offline status.
+
+### 👥 Member Panel
+Display active or offline users in each channel, updated in real-time.
+
+### ⏳ Temporary Rooms
+Enable temporary channels with predefined duration and schedule.
+
+### 💾 Data Backup
+After each public session ends (or every 24 hours), save chat data with metrics like most-used words.
+
+### 🚫 Moderation Tools (Bounce/Ban)
+Allow moderators to temporarily exclude users or permanently ban them from specific channels.
+
+### 🌟 Reward System
+Implement a reward system for highly-rated users, granting privileges like pinning messages.
+
+### 🛡️ Safe Channel Mode
+Allow channel creators to enable "Safe Channel" mode to enforce respect, with flagged or banned words filtered out.
+
+---
+
+## 🛠️ Frontend Components
+
+- **Parent Component**: `RoomVoice` (manages room data).
+- **Child Component**: `RoomClient` (represents users within the room).
+
+> *Tip:* Keep components focused on data management, without directly handling UI interactions.
+
+### ⚙️ Technologies
+
+- **Frontend**: React.js, TypeScript, Redux
+- **Backend**: NestJS, WebRTC
+- **Protocols**: WebSocket (real-time chat), REST API (integration with other microservices)
+- **Testing**: Jest, Supertest
+- **DevOps**: Docker, GitHub Actions for CI/CD
+
+---
+
+## 🧪 Testing
+
+- **Unit Tests**: Each service should have at least one test on both the backend and frontend.
+- **Integration Tests**: Test API endpoints thoroughly.
+- **Functional Tests**: Use Selenium to automate end-to-end functionality tests.
+
+---
+
+## 🐳 Containerization with Docker
+
+- **Dockerfile** and **docker-compose.yml** setup to isolate backend and enable independent testing environments.
+
+## 🚀 CI/CD Pipeline with GitHub Actions
+
+- **Build Pipeline**: Triggered on each commit to the repository.
+- **Testing**: Run Jest tests, blocking code that doesn’t pass unit and integration tests.
+- **Test Deployment**: Deploy each commit on the main branch to a test server for live feature testing.
+
+---
+
+## 👥 Team Work
+
+- **Teamwork**: Assess collaboration, communication, and task division.
+- **Project Management**: Evaluate the use of project tools (e.g., Jira) and Git workflows.
+
+---
+
+## 📝 Documentation
+
+- **Technical Documentation**: Comprehensive code and feature documentation.
+- **API Documentation**: List and explain all API endpoints.
+- **Installation & Run Guide**: Clear instructions for project setup.
+
+---
+
+## 📊 Evaluation Criteria
+
+1. **Technical Quality**: Completeness and reliability of features.
+2. **Code & Architecture**: Quality, organization, and adherence to best practices.
+3. **Testing**: Minimum 80% test coverage, including unit and integration tests.
+4. **Collaboration**: Effective teamwork and task distribution.
+5. **Documentation & Presentation**: Quality and clarity of the final project presentation.
