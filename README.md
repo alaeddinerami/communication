@@ -49,16 +49,16 @@ Our goal is to create an independent chat service that prioritizes performance a
 
 ### Backend Setup
 
-    cd backend
+    cd ../js-communication
     npm install
     npm run start
-
+      
 
 ### Frontend Setup
 
     cd ../frontend
     npm install
-    npm run start
+    npm run dev
 
 👥 Contributing
 
