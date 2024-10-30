@@ -10,6 +10,7 @@ export default function NotFound() {
 	<div className="bg-[#FF6A3D] px-2 text-sm rounded rotate-12 absolute">
 		Page Not Found
 	</div>
+    <Link to="/">
 	<button className="mt-5">
       <a
         className="relative inline-block text-sm font-medium text-[#FF6A3D] group active:text-orange-500 focus:outline-none focus:ring"
@@ -19,10 +20,11 @@ export default function NotFound() {
         ></span>
 
         <span className="relative block px-8 py-3 bg-[#1A2238] border border-current">
-          <Link to="/">Go Home</Link>
+         Go Home
         </span>
       </a>
     </button>
+    </Link>
     </main>
   )
 }
