@@ -1,4 +1,3 @@
-import React from 'react'
 
 export default function Sider() {
   return (
@@ -6,6 +5,7 @@ export default function Sider() {
 <>
 
 
+<p>side</p>
 </>
   )
 }
