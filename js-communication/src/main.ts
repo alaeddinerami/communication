@@ -5,7 +5,7 @@ import { Logger } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
-  // Listen for application events
+
   app.enableShutdownHooks();
 
   await app.listen(process.env.PORT ?? 3000);
