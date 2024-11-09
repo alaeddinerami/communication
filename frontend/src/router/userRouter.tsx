@@ -1,4 +1,5 @@
 import Home from "../pages/home";
+import UserChat from "../pages/userChat";
 
 
 const UserRouter = [
@@ -7,6 +8,10 @@ const UserRouter = [
         path: "/",
         element: <Home />
     },
+    {
+        path: "/chat",
+        element :<UserChat/>
+    }
 
 ]
 
