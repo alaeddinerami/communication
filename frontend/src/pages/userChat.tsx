@@ -2,14 +2,23 @@ import ResivedMessage from "../components/ui/chatPop";
 import UserMessage from "../components/ui/userMessage";
 import ChatInput from "../components/ui/inputs/chatInput";
 import ChatHeader from "../components/ui/chatHeader";
+import FriendProfile from "./friendProfile";
+import { useState } from "react";
 
 export default function UserChat() {
+
+  const [view, setView] = useState("chat"); 
+
+
   return (
+
+
+    <div className="flex h-full ">
+
     <div className="w-full h-full bg-gradient-to-b from-gray-800 via-gray-900 to-black rounded-2xl flex flex-col bg-opacity-90">
-      
 
       <div className="border-b border-gray-700 pb-2">
-        <ChatHeader />
+        <ChatHeader onProfileClick={() => setView("profile")}/>
       </div>
 
 
@@ -44,5 +53,10 @@ export default function UserChat() {
         <ChatInput />
       </div>
     </div>
+
+    { view === 'profile' && <FriendProfile closeIt={()=>setView('chat')}/>}  
+
+  </div>
+
   );
 }
