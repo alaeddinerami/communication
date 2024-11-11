@@ -27,7 +27,7 @@ const UserRouter = [
 
         path: "/FriendsPanel",
         element : <FriendsPanel/>
-    }
+    },
 
 ]
 

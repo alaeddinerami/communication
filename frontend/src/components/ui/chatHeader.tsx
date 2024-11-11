@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 interface ChatHeaderProps {
@@ -9,6 +10,8 @@ interface ChatHeaderProps {
 export default function ChatHeader({onProfileClick}: ChatHeaderProps ) {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsDropdownOpen(prevState => !prevState);
@@ -24,6 +27,11 @@ export default function ChatHeader({onProfileClick}: ChatHeaderProps ) {
           showCloseButton: true,
           customClass: {
             popup: 'custom-dark-popup', 
+          }
+        }).then((result)=>{
+
+          if(result.isConfirmed){
+            navigate('/viedoChat');
           }
         });
       };
