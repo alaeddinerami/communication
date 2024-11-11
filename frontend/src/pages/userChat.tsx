@@ -2,7 +2,7 @@ import ResivedMessage from "../components/ui/chatPop";
 import UserMessage from "../components/ui/userMessage";
 import ChatInput from "../components/ui/inputs/chatInput";
 import ChatHeader from "../components/ui/chatHeader";
-import FriendProfile from "./friendProfile";
+import FriendProfile from "../components/friendProfile";
 import { useState } from "react";
 
 export default function UserChat() {
