@@ -15,7 +15,7 @@ export default function Sider() {
         <div className="navi flex flex-col items-center w-20 h-screen py-8 space-y-8 bg-red-900 dark:border-gray-700">
 
           <Link to={'/'}>
-            <img className="w-auto h-6" src="https://merakiui.com/images/logo.svg" alt="" />
+            <img className="w-auto h-12" src="public/logo.png" alt="" />
           </Link>
         
 
