@@ -15,7 +15,7 @@ export default function Layout() {
 <Sider />
 </div>
 
-  <main className="col-span-10 w-full p-6 bg-gray-900">
+  <main className="col-span-10 w-full p-3 bg-gray-900">
     <Outlet />
   </main>
 </div>
