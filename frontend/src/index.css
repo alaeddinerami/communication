@@ -11,3 +11,9 @@ background-size: cover;
 
 
 }   
+
+.custom-dark-popup {
+    background-color: #333; 
+    color: white;
+  }
+  
