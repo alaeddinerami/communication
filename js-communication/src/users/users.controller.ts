@@ -1,4 +1,4 @@
-import { Body, Controller , Post } from '@nestjs/common';
+import { Body, Controller , Post , BadRequestException } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './users.entity';
 import { CreateUserDTO } from './DTO/create-user.dto';
@@ -15,6 +15,19 @@ export class UsersController {
     async register(@Body() createUser : CreateUserDTO ){
 
         return this.usersService.Create(createUser);
+    }
+
+
+    @Post('login')
+    async login(@Body('email') email: string){
+
+        if(!email){
+
+            throw new BadRequestException('Email is required');
+        }
+
+        const {token} = await this.usersService.login(email)
+        return {message : 'login successfully', token}
     }
 
 
