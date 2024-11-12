@@ -1,5 +1,5 @@
-import ResivedMessage from "../components/ui/chatPop";
-import UserMessage from "../components/ui/userMessage";
+// import ResivedMessage from "../components/ui/chatPop";
+// import UserMessage from "../components/ui/userMessage";
 import ChatInput from "../components/ui/inputs/chatInput";
 import ChatHeader from "../components/ui/chatHeader";
 import FriendProfile from "../components/friendProfile";

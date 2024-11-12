@@ -1,5 +1,5 @@
-import ResivedMessage from "../components/ui/chatPop";
-import UserMessage from "../components/ui/userMessage";
+// import ResivedMessage from "../components/ui/chatPop";
+// import UserMessage from "../components/ui/userMessage";
 import ChannelHeader from "../components/ui/channelHeader";
 import ChannelInput from "../components/ui/inputs/channelInput";
 import ChannelMembers from "../components/channelMembers";
