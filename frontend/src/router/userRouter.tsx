@@ -3,7 +3,7 @@ import UserChat from "../pages/userChat";
 import Channel from "../pages/channel";
 import ChannelCreat from "../components/channelCreate";
 import FriendsPanel from "../components/friendsPanel";
-
+import Profile from "../pages/profile";
 
 const UserRouter = [
 
@@ -28,6 +28,10 @@ const UserRouter = [
         path: "/FriendsPanel",
         element : <FriendsPanel/>
     },
+    {
+        path : "/profile",
+        element : <Profile/>
+    }
 
 ]
 
