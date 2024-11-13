@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
+import { FriendsRequestService } from './friends-request/friends-request/friends-request.service';
+import { FriendsRequestModule } from './friends-request/friends-request/friends-request.module';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -15,8 +17,9 @@ dotenv.config();
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(process.env.DB || 'mongodb://localhost:27017/js-communication'),
     UsersModule,
+    FriendsRequestModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, FriendsRequestService],
 })
 export class AppModule {}
