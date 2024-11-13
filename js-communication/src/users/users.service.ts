@@ -39,6 +39,17 @@ async login (email : string ) : Promise<{ token : string }>{
     return {token};     
 }
 
+async getAllUsers (){
+
+    const users = await this.userRepositorie.getAllUsers();
+
+    if(!users){
+        throw new NotFoundException('no users found');
+    }
+
+    return users
+}
+
 
 
 
