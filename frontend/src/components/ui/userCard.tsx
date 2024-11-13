@@ -1,6 +1,14 @@
-export default function UserCard() {
+import React from "react";
+
+type UserCardProp = {
+
+    UserName: string ,
+    id: string 
+}
+
+ const UserCard: React.FC<UserCardProp> = ({UserName , id}) => {
     return (
-      <div className="p-4 bg-gray-600 rounded-lg shadow-md flex items-center mb-4 space-x-4">
+      <div key={id} className="p-4 bg-gray-600 rounded-lg shadow-md flex items-center mb-4 space-x-4">
         <img
           className="h-16 w-16 rounded-full"
           src="public/avatar.png"
@@ -8,7 +16,7 @@ export default function UserCard() {
         />
         <div className="flex-1">
           <div className="space-y-0.5">
-            <p className="text-base text-white font-semibold">Erin Lindford</p>
+            <p className="text-base text-white font-semibold">{UserName}</p>
             <p className="text-gray-300 text-sm font-medium">Product Engineer</p>
           </div>
           <div className="mt-3 space-x-2">
@@ -23,4 +31,6 @@ export default function UserCard() {
       </div>
     );
   }
+
+  export default UserCard 
   

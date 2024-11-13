@@ -10,11 +10,7 @@ export default function Notifications() {
         <div className="mt-8 space-y-4">
             
 
-        <NotificationCard/>
-
-        <NotificationCard/>
-
-        <NotificationCard/>
+        <NotificationCard id={'id'} userName={'mohammed'} content={'mohammed send you message'} time={'12:11'}/>
 
 
         </div>
