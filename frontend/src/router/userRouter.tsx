@@ -33,7 +33,7 @@ const UserRouter = [
         )
     },
     {
-        path: "/CreateChannel",
+        path: "/CreatChannel",
         element: (
             <ProtectedRoute>
                 <ChannelCreate />
