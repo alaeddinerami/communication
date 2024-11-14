@@ -1,14 +1,24 @@
+
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { Logger } from '@nestjs/common';
-
+import { ConfigService } from '@nestjs/config';
+import { WebsocketAdapter } from './chat/websocket-adapter';
+ 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  
-
-  app.enableShutdownHooks();
-
-  await app.listen(process.env.PORT ?? 3000);
-  Logger.log(`Application is running on: http://localhost:${process.env.PORT ?? 3000}`, 'Bootstrap');
+ 
+  const configService = app.get(ConfigService);
+ 
+  app.enableCors({
+    origin: configService.get('FRONTEND_URL'),
+  });
+ 
+  app.useWebSocketAdapter(
+    new WebsocketAdapter(app, {
+      origin: configService.get('FRONTEND_URL'),
+    }),
+  );
+ 
+  await app.listen(3000);
 }
 bootstrap();
