@@ -24,6 +24,11 @@ export class FriendRequesRepositorie{
         return await this.friendRequestModel.findOneAndUpdate( {requestId} ,{status},{new:true}).exec();
     }
 
+    async deleteRequest(fromId: string , toId: string) {
+
+        return await this.friendRequestModel.findOneAndDelete({from: fromId , to: toId}).exec();
+    }
+
     async getUserRequests(userId : string): Promise<FriendRequest[]>{
 
         return await this.friendRequestModel.find({$or:[{ From:userId},{To:userId}]}).exec();
