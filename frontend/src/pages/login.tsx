@@ -5,8 +5,8 @@ import axios from "axios";
 const Login: React.FC = () => {
 
 
-    const [name, setName] = useState<string>('');
-    const [email, setEmail] = useState<string>('');
+    const [userName, setName] = useState<string>('');
+    const [userEmail, setEmail] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);  
     const [error, setError] = useState<string | null>(null); 
     const navigate = useNavigate();
@@ -14,17 +14,24 @@ const Login: React.FC = () => {
     const login = async (name: string, email: string): Promise<void> => {
         setLoading(true); 
         try {
-            const res = await axios.post('http://localhost:3000/users/login', { name, email });
+            const res = await axios.post('http://localhost:3000/users/login', { name, email});
 
-            console.log('login successful:', res.data);
-            if (res.status === 201 || res.status === 200) {
+            console.log(res.data)
 
-                localStorage.setItem('token', res.data.token); 
+
+            if(res.status === 201 || res.status === 200 ){
+
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('userId', res.data.user._id);
+    
                 navigate('/home'); 
+
+            }else{
+                console.warn('Unexpected status code:', res.status);
             }
+
         } catch (err: any) {
-            console.error('login failed:', err);
-            setError('Login failed. Please check your credentials.');
+            console.error('Login failed:', err.response ? err.response.data : err.message);         
         } finally {
             setLoading(false); 
         }
@@ -34,7 +41,7 @@ const Login: React.FC = () => {
         e.preventDefault();
         setError(null);
         try {
-            await login(name, email);
+            await login(userName, userEmail);
         } catch (err) {
             console.log('Error while Login');
         }
@@ -53,7 +60,7 @@ const Login: React.FC = () => {
                                     </label>
                                     <input
                                         className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full bg-gray-800 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                                        value={name}
+                                        value={userName}
                                         onChange={(e) => setName(e.target.value)}
                                         placeholder="Enter Name"
                                         type="text"
@@ -65,7 +72,7 @@ const Login: React.FC = () => {
                                     </label>
                                     <input
                                         className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full bg-gray-800 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-                                        value={email}
+                                        value={userEmail}
                                         onChange={(e) => setEmail(e.target.value)}
                                         placeholder="Email"
                                         type="email"
@@ -78,14 +85,12 @@ const Login: React.FC = () => {
                                     <button
                                         className="flex items-center justify-center py-2 px-20 bg-white hover:bg-gray-200 focus:ring-blue-500 focus:ring-offset-blue-200 text-gray-700 w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                                     >
-
                                         <svg
                                             viewBox="0 0 24 24"
                                             height="25"
                                             width="25"
                                             xmlns="http://www.w3.org/2000/svg"
                                         >
-
                                         </svg>
                                         <span className="ml-2">Login with Google</span>
                                     </button>
