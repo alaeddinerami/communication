@@ -9,17 +9,14 @@ export class FriendRequesRepositorie{
 
     constructor(@InjectModel(FriendRequest.name) private friendRequestModel: Model<FriendRequest>){}
 
-    async create(userData: Partial<FriendRequest>): Promise<FriendRequest> {
-
-        const createRequest = new this.friendRequestModel(userData);
-
-        return createRequest.save();
-
-    }
+    async createRequest(createRequestDto: { from: string; to: string; status: string }): Promise<FriendRequest> {
+        const newRequest = new this.friendRequestModel(createRequestDto);
+        return newRequest.save();
+      }
 
     async findRequest(fromId: string , toId: string ) : Promise<FriendRequest | null> {
         
-        return this.friendRequestModel.findOne({From: fromId , To: toId}).exec();
+        return this.friendRequestModel.findOne({from: fromId , to: toId}).exec();
     }
 
     async updateStatus(requestId: string , status: 'approve'|'reject'):Promise<FriendRequest>  {
