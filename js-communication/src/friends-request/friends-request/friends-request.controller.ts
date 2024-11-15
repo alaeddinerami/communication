@@ -1,4 +1,4 @@
-import { Controller, NotFoundException, Param, Post } from '@nestjs/common';
+import { Controller, Delete, NotFoundException, Param, Post } from '@nestjs/common';
 import { FriendsRequestService } from './friends-request.service';
 
 @Controller('friends/request')
@@ -23,6 +23,18 @@ export class FriendsRequestController {
       await this.friendRequestService.approveRequest(requestId);
     } catch (err) {
       throw new NotFoundException('Error approving friend request: ' + err.message);
+    }
+  }
+
+  @Delete(':fromId/withdraw/:toId')
+  async withdrawRequest( @Param('fromId') fromId: string, @Param('toId') toId: string ): Promise<any>{
+
+    try{
+
+      await this.friendRequestService.deleteRequest(fromId , toId);
+
+    }catch(err){
+      throw new NotFoundException('Error deleting friend request')
     }
   }
 }
