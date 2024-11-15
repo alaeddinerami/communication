@@ -25,10 +25,10 @@ export class UsersController {
 
             throw new BadRequestException('Email is required');
         }
-
-        const {token} = await this.usersService.login(email)
-        return {message : 'login successfully', token}
-    }
+ 
+        const {token , user} = await this.usersService.login(email)
+        return {message : 'login successfully', token , user }
+    }   
 
 
     @Get('allUsers')
