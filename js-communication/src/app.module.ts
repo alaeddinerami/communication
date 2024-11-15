@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
-import { FriendsRequestService } from './friends-request/friends-request/friends-request.service';
 import { FriendsRequestModule } from './friends-request/friends-request/friends-request.module';
 import * as dotenv from 'dotenv';
 
@@ -20,6 +19,6 @@ dotenv.config();
     FriendsRequestModule,
   ],
   controllers: [AppController],
-  providers: [AppService, FriendsRequestService],
+  providers: [AppService],
 })
 export class AppModule {}
