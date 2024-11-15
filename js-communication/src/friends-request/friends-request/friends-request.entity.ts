@@ -6,10 +6,10 @@ import { Document , Types } from "mongoose";
 export class FriendRequest extends Document {
 
     @Prop({ type :Types.ObjectId , ref: 'User' , required: true})
-    From: Types.ObjectId ;
+    from: Types.ObjectId ;
 
     @Prop({ type :Types.ObjectId , ref: 'User' , required: true })
-    To: Types.ObjectId ;
+    to: Types.ObjectId ;
     
     @Prop({enum:['approve','reject','pending'], default:'pending'})
     status : string
