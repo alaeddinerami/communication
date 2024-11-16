@@ -51,6 +51,22 @@ async getAllUsers (){
 }
 
 
+async getUserFriends (userId: string): Promise<any>{
+
+    const user = await this.userRepositorie.getUserFriends(userId);
+
+    if(!user){
+
+        throw new NotFoundException('user friends not found');
+    }
+
+    const friends = user.friends;
+
+    return friends
+    
+}
+
+
 
 
 
