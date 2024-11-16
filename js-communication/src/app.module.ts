@@ -3,7 +3,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
-import { ChatGateway } from './chat/chat.gateway';
 import * as dotenv from 'dotenv';
 import * as Joi from 'joi';
 import { ConfigModule } from '@nestjs/config';
@@ -14,6 +13,8 @@ dotenv.config();
 
 @Module({
   imports: [
+
+    ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(process.env.DB || 'mongodb://localhost:27017/js-communication'),
     UsersModule,
     ConfigModule.forRoot({

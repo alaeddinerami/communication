@@ -1,34 +1,61 @@
+// main.tsx or UserRouter.tsx (your route configuration file)
 import Home from "../pages/home";
 import UserChat from "../pages/userChat";
 import Channel from "../pages/channel";
-import ChannelCreat from "../components/channelCreate";
+import ChannelCreate from "../components/channelCreate";
 import FriendsPanel from "../components/friendsPanel";
-
+import Profile from "../pages/profile";
+import ProtectedRoute from "./guard";
 
 const UserRouter = [
-
     {
-        path: "/",
-        element: <Home />
+        path: "/home",
+        element: (
+            <ProtectedRoute>
+                <Home />
+            </ProtectedRoute>
+        )
     },
     {
         path: "/chat",
-        element :<UserChat/>
+        element: (
+            <ProtectedRoute>
+                <UserChat />
+            </ProtectedRoute>
+        )
     },
     {
         path: "/channel",
-        element : <Channel/>
+        element: (
+            <ProtectedRoute>
+                <Channel />
+            </ProtectedRoute>
+        )
     },
     {
         path: "/CreatChannel",
-        element : <ChannelCreat/>
+        element: (
+            <ProtectedRoute>
+                <ChannelCreate />
+            </ProtectedRoute>
+        )
     },
     {
-
         path: "/FriendsPanel",
-        element : <FriendsPanel/>
+        element: (
+            <ProtectedRoute>
+                <FriendsPanel />
+            </ProtectedRoute>
+        )
     },
-
-]
+    {
+        path: "/profile",
+        element: (
+            <ProtectedRoute>
+                <Profile />
+            </ProtectedRoute>
+        )
+    }
+];
 
 export default UserRouter;
