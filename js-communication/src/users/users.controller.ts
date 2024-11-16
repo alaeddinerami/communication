@@ -1,4 +1,4 @@
-import { Body, Controller , Post , BadRequestException, Get, NotFoundException } from '@nestjs/common';
+import { Body, Controller , Post , BadRequestException, Get, NotFoundException, Param } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './users.entity';
 import { CreateUserDTO } from './DTO/create-user.dto';
@@ -42,6 +42,28 @@ export class UsersController {
         }
 
         return {message: 'users fetched successfully',users}
+    }
+
+    @Get('userFriends/:userId')
+    async getUserFriends(@Param('userId') userId: string){
+
+
+        try{
+
+            const friends = await this.usersService.getUserFriends(userId);
+
+            if(!friends || friends.length === 0){
+                
+                throw new NotFoundException('no friends found');
+            }
+    
+            return {message: 'user friends fetched successfully', friends}
+
+        }catch(err){
+
+            throw new Error('error' + err)
+        }
+      
     }
 
 

@@ -1,5 +1,5 @@
 import { Prop , Schema , SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Document, Types  } from "mongoose";
 
 @Schema()
 export class User extends Document {
@@ -16,8 +16,8 @@ export class User extends Document {
     @Prop({enum:['user','moderator'] , default:'user'})
     role : string
 
-    @Prop({type:[String] , default: [] })
-    friends : string[];
+    @Prop({ type: [{ type: Types.ObjectId, ref: "User" }], default: [] })
+    friends: Types.ObjectId[];
 
     @Prop({type:[String] , default: [] })
     channels: string[];
@@ -26,5 +26,6 @@ export class User extends Document {
     score : number
 
 }
+
 
 export const userSchema = SchemaFactory.createForClass(User);

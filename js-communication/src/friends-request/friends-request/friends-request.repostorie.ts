@@ -19,9 +19,11 @@ export class FriendRequesRepositorie{
         return this.friendRequestModel.findOne({from: fromId , to: toId}).exec();
     }
 
+
     async updateStatus(requestId: string , status: 'approve'|'reject'):Promise<FriendRequest>  {
 
-        return await this.friendRequestModel.findOneAndUpdate( {requestId} ,{status},{new:true}).exec();
+
+        return await this.friendRequestModel.findOneAndUpdate( {_id: requestId} ,{status},{new:true}).exec();
     }
 
     async deleteRequest(fromId: string , toId: string) {
@@ -33,8 +35,14 @@ export class FriendRequesRepositorie{
 
         return await this.friendRequestModel.find({$or:[{ From:userId},{To:userId}]}).exec();
     }
-  
-  
+
+    async getUserReq(userId: string): Promise<FriendRequest[]>{
+
+        return await this.friendRequestModel.find({to: userId , status:'pending'}).populate('from','userName email').exec();
+
+    }
+
+   
 
     }
 

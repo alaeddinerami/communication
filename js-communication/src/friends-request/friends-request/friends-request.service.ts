@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { FriendRequesRepositorie } from './friends-request.repostorie';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -17,13 +17,24 @@ export class FriendsRequestService {
             const fromUser = await this.userModel.findById(fromId);
             const toUser = await this.userModel.findById(toId);
 
+            const exestRequest = await this.friendRequestRepository.findRequest(fromId , toId);
+
+            if(exestRequest){
+
+                throw new BadRequestException('You cannot send a friend request to yourself.')
+            }
+            
+
             if (!fromUser || !toUser) {
-                throw new NotFoundException('User(s) not found');
+                throw new NotFoundException('User not found');
             }
 
-            if (fromUser.friends.includes(toId)) {
-                throw new Error('You are already friends');
-            }
+            
+
+            // if (fromUser.friends.includes(t)) {
+            //     throw new Error('You are already friends');
+            //     return;
+            // }
 
             const friendRequest = await this.friendRequestRepository.createRequest({
                 from: fromId,
@@ -39,8 +50,12 @@ export class FriendsRequestService {
     }
 
     async approveRequest(requestId: string): Promise<void> {
+
+        
         const request = await this.friendRequestRepository.updateStatus(requestId, 'approve');
-        if (!request || !request.from || !request.to) {
+
+        if (!request) {
+
             throw new NotFoundException(`Friend request with ID ${requestId} not found or invalid`);
         }
 
@@ -58,5 +73,32 @@ export class FriendsRequestService {
         if (!request) {
             throw new NotFoundException(`Friend request with ID ${requestId} not found`);
         }
+    }
+
+    async deleteRequest(fromId: string , toId: string): Promise<void> {
+
+        const request = await this.friendRequestRepository.deleteRequest(fromId , toId);
+        if(!request){
+            throw new NotFoundException('cant delete this request');
+        }
+    }
+
+    async getFreiendRequest(userId: string): Promise<any> {
+
+
+        try{
+
+            const requests = await this.friendRequestRepository.getUserReq(userId);
+
+            return { success : true , requests };
+
+        }catch(err){
+
+            throw new NotFoundException('error fetching friends requests');
+
+        }
+
+
+    
     }
 }
