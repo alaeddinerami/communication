@@ -1,7 +1,47 @@
 import UserCard from "./ui/userCard"
 import ChannelCard from "./ui/channelCard"
+import { useState , useEffect } from "react"
+import axios from "axios"
+
+
+
+type User = {
+
+    _id : string;
+    userName : string;
+}
 
 export default function FriendsPanel() {
+
+    const [users , SetUsers] = useState<User[]>([])
+
+
+    useEffect(()=>{
+
+
+    const AllUsers = async ()=>{
+
+        try{
+
+            const res = await axios.get('http://localhost:3000/users/allUsers');
+            SetUsers(res.data.users)
+
+        }catch(err){
+
+            console.log('error happend during users fetching', err);
+        }
+
+    }
+
+    AllUsers();
+
+},[])
+
+    
+
+
+
+
   return (
 
 
@@ -47,16 +87,13 @@ export default function FriendsPanel() {
     <h1 className="text-gray-300 text-center text-lg ">friends you may know </h1>
 </div>
 <div className="p-3 max-h-[88vh]  overflow-y-auto space-y-4">
-<UserCard/>
-<UserCard/>
-<UserCard/>
-<UserCard/>
-<UserCard/>
-<UserCard/>
-<UserCard/>
-<UserCard/>
-<UserCard/>
-<UserCard/>
+
+    { users.map((user)=> (
+
+    <UserCard id={user._id} UserName={user.userName} />
+
+    )) }
+
 </div>
 </div>
 </div>

@@ -21,5 +21,19 @@ export class UserRepositorie{
         return this.userModel.findOne({email}).exec();
     }
 
+
+    async getUserById(id: string) : Promise<User> {
+
+        return this.userModel.findById(id);
+    }
+
+
+    async getAllUsers() {
+
+        return this.userModel.find();
+    }
+
+    
+
     }
 
