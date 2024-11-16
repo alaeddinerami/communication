@@ -13,7 +13,6 @@ export class UsersController {
 
     @Post('register')
     async register(@Body() createUser : CreateUserDTO ){
-
         return this.usersService.Create(createUser);
     }
 

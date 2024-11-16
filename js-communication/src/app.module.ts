@@ -8,6 +8,7 @@ import * as dotenv from 'dotenv';
 import * as Joi from 'joi';
 import { ConfigModule } from '@nestjs/config';
 import { ChatModule } from './chat/chat.module';
+import { VideoCallGateway } from './chat/VideoCallGateway';
 
 dotenv.config();
 
@@ -23,6 +24,6 @@ dotenv.config();
     ChatModule,
   ],
   controllers: [AppController],
-  providers: [AppService, ChatGateway],
+  providers: [AppService, VideoCallGateway],
 })
 export class AppModule {}
