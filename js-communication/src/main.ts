@@ -1,11 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-<<<<<<< HEAD
-  await app.listen(3000);
-=======
   
 
   app.enableShutdownHooks();
@@ -20,7 +18,7 @@ async function bootstrap() {
   });
 
   await app.listen(process.env.PORT ?? 3000);
+  
   Logger.log(`Application is running on: http://localhost:${process.env.PORT ?? 3000}`, 'Bootstrap');
->>>>>>> 6270be9ad8e20e507b338d87388973b4cefb1944
 }
 bootstrap();

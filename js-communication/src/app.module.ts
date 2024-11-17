@@ -7,7 +7,8 @@ import * as dotenv from 'dotenv';
 import * as Joi from 'joi';
 import { ConfigModule } from '@nestjs/config';
 import { ChatModule } from './chat/chat.module';
-import { VideoCallGateway } from './chat/VideoCallGateway';
+import { VideoCallGateway } from './video-call/videoCall.gateway';
+
 
 dotenv.config();
 

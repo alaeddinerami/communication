@@ -13,9 +13,6 @@ export class UsersController {
 
     @Post('register')
     async register(@Body() createUser : CreateUserDTO ){
-<<<<<<< HEAD
-        return this.usersService.Create(createUser);
-=======
 
         return await this.usersService.Create(createUser);
     }
@@ -45,7 +42,6 @@ export class UsersController {
         }
 
         return {message: 'users fetched successfully',users}
->>>>>>> 6270be9ad8e20e507b338d87388973b4cefb1944
     }
 
 
