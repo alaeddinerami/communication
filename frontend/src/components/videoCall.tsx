@@ -27,7 +27,7 @@ const VideoCall = () => {
     });
 
   }, []);
-
+  
   const startVideo = () => {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
       if (myVideo.current) {
