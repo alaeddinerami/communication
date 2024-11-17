@@ -27,42 +27,51 @@ const VideoCall = () => {
     });
 
   }, []);
-  
   const startVideo = () => {
-    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
-      if (myVideo.current) {
-        myVideo.current.srcObject = stream;
-      }
-    });
-  };
-
-  const callUser = () => {
-    if (peerInstance.current && remotePeerId) {
-      navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      .then(stream => {
         if (myVideo.current) {
           myVideo.current.srcObject = stream;
         }
-
-        const call = peerInstance.current?.call(remotePeerId, stream);
-        if (call) {
-          setCurrentCall(call); 
-
-        
-          call.on('stream', remoteStream => {
-            if (peerVideo.current) {
-              peerVideo.current.srcObject = remoteStream;
-            }
-          });
-        }
+      })
+      .catch(error => {
+        console.error("Error accessing media devices:", error);
+        alert(`Could not access media devices: ${error.message}`);
       });
+  };
+  
+  const callUser = () => {
+    if (peerInstance.current && remotePeerId) {
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+        .then(stream => {
+          if (myVideo.current) {
+            myVideo.current.srcObject = stream;
+          }
+  
+          const call = peerInstance.current?.call(remotePeerId, stream);
+          if (call) {
+            setCurrentCall(call);
+  
+            call.on('stream', remoteStream => {
+              if (peerVideo.current) {
+                peerVideo.current.srcObject = remoteStream;
+              }
+            });
+          }
+        })
+        .catch(error => {
+          console.error("Error during call setup:", error);
+          alert(`Could not start call: ${error.message}`);
+        });
     } else {
       alert("Enter a valid remote peer ID to call.");
     }
   };
+  
 
   const acceptCall = () => {
     if (incomingCall) {
-      navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
+      navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then(stream => {
         if (myVideo.current) {
           myVideo.current.srcObject = stream;
         }
