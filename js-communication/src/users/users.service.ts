@@ -25,7 +25,7 @@ async Create (createUser : CreateUserDTO): Promise<User>{
 }
 
 
-async login (email : string ) : Promise<{ token : string }>{
+async login (email : string ) {
 
     const user = await this.userRepositorie.findByEmail(email);
 
@@ -36,7 +36,7 @@ async login (email : string ) : Promise<{ token : string }>{
     const payload = {email : user.email , id : user.id , name : user.userName };
     const token  = this.jwtService.sign(payload);
 
-    return {token};     
+    return {token , user };     
 }
 
 async getAllUsers (){
@@ -48,6 +48,22 @@ async getAllUsers (){
     }
 
     return users
+}
+
+
+async getUserFriends (userId: string): Promise<any>{
+
+    const user = await this.userRepositorie.getUserFriends(userId);
+
+    if(!user){
+
+        throw new NotFoundException('user friends not found');
+    }
+
+    const friends = user.friends;
+
+    return friends
+    
 }
 
 

@@ -33,6 +33,13 @@ export class UserRepositorie{
         return this.userModel.find();
     }
 
+    async getUserFriends(userId: string): Promise<User> {
+
+        
+        return await this.userModel.findById({_id: userId}).populate('friends','userName email' ).exec();
+
+    }
+
     
 
     }
