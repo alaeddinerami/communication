@@ -1,5 +1,6 @@
 import UserCard from "./ui/userCard"
 import ChannelCard from "./ui/channelCard"
+import FriendRequest from "./ui/friendRequest"
 import { useState , useEffect } from "react"
 import axios from "axios"
 
@@ -11,9 +12,20 @@ type User = {
     userName : string;
 }
 
+type FriendRequestType   = {
+  _id: string;
+  from: { _id: string; userName: string; email: string };
+  status: string;
+};
+
 export default function FriendsPanel() {
 
     const [users , SetUsers] = useState<User[]>([])
+    const [friendRequests  , SetRequest] = useState<FriendRequestType  []>([])
+
+
+    const userId = localStorage.getItem('userId')
+
 
 
     useEffect(()=>{
@@ -33,24 +45,39 @@ export default function FriendsPanel() {
 
     }
 
+    const getUserRequests = async ()=>{
+
+      if (!userId) {
+        console.log("User ID not found in localStorage");
+        return;
+      }
+
+      try{
+
+        const res = await axios.get(`http://localhost:3000/friends/request/getRequests/${userId}`)
+        SetRequest(res.data.requests);
+
+      
+      }catch(err){
+        console.log('error happend during friensds request fetch',err);
+      }
+    }
+
     AllUsers();
+    getUserRequests();
 
 },[])
-
-    
-
-
 
 
   return (
 
 
 
-<div className="flex h-full">
+<div className="flex ">
 
 
 
-<div className="flex flex-wrap gap-2 w-[70%]">
+<div className="flex flex-wrap h-full gap-2 w-[70%]">
 
 
 
@@ -70,14 +97,30 @@ export default function FriendsPanel() {
 </div>
 
 
-<div className="ml-2 w-full h-[52%] bg-gray-800 rounded-lg shadow-lg overflow-y-auto p-4">
-  <div className="flex justify-between items-center">
+<div className="ml-2 w-full h-[52%] bg-gray-800 rounded-lg shadow-lg overflow-x-auto space-x-4 p-4">
+
+<h1 className="pb-5 text-lg font-semibold  text-gray-300">Friends Request Send To You  🎉</h1>
+
+
+
+  <div className="justify-between items-center">
+
+
+{  
+
+    friendRequests.length > 0  ? ( 
     
-  
-    <div className="flex justify-end mt-8">
-      <img className="w-[50%]" src="public/primo.svg" alt="Chat illustration" />
-    </div>
+    friendRequests.map(( request )=> (
+
+    <FriendRequest key={request._id} id={request._id} UserName={request.from.userName} email={request.from.email}/>
+
+    ))
+
+    ) : ( <p className="text-white text-center mt-12 mb-6 font-semibold">No friend requests for you yet. 🫂 </p>  )}
+
+      
   </div>
+  
 </div>
 
 </div>
@@ -88,11 +131,23 @@ export default function FriendsPanel() {
 </div>
 <div className="p-3 max-h-[88vh]  overflow-y-auto space-y-4">
 
-    { users.map((user)=> (
 
-    <UserCard id={user._id} UserName={user.userName} />
 
-    )) }
+
+{ users.length > 0 ? (
+
+users.map((user)=> (
+
+  <UserCard key={user._id} id={user._id} UserName={user.userName} />
+
+  )) 
+
+) : ( <p className="text-white text-center mt-12 mb-6 font-bold">no users</p> )
+
+}
+
+
+  
 
 </div>
 </div>
