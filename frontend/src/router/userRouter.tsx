@@ -1,4 +1,3 @@
-// main.tsx or UserRouter.tsx (your route configuration file)
 import Home from "../pages/home";
 import UserChat from "../pages/userChat";
 import Channel from "../pages/channel";
@@ -33,12 +32,8 @@ const UserRouter = [
         )
     },
     {
-        path: "/CreatChannel",
-        element: (
-            <ProtectedRoute>
-                <ChannelCreate />
-            </ProtectedRoute>
-        )
+        path: "/CreatChannel", // No ProtectedRoute here
+        element: <ChannelCreate /> // This will allow access without restriction
     },
     {
         path: "/FriendsPanel",
