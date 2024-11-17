@@ -30,7 +30,7 @@ export default function Channel() {
         <div className="text-center text-gray-400 py-4 flex flex-col items-center space-y-2">
           <div className="flex items-center justify-center space-x-2">
             <span className="text-2xl">🌟</span>
-            <h3 className="text-lg font-semibold text-gray-300">Welcome to the Conversation</h3>
+            <h3 className="text-lg font-semibold text-gray-300">Welcome to the Conversationzdzd</h3>
           </div>
           <p>This is the beginning of your chat in this channel</p>
           <p>Say hello or send a message to start the conversation!</p>

@@ -9,13 +9,13 @@ export default function ChannelCreate() {
   // Function to handle form submission
   const handleCreateChannel = async () => {
     if (!channelName.trim()) {
-      alert('Channel name cannot be empty. Please enter a valid name.');
+      alert('Please enter a channel name!');
       return;
     }
 
     try {
       setLoading(true);
-      const response = await axios.post('/api/channels', {
+      const response = await axios.post('http://localhost:3000/api/channels', { // Update with your API URL
         name: channelName,
         private: isPrivate,
       });
@@ -24,9 +24,7 @@ export default function ChannelCreate() {
       setIsPrivate(false); // Reset privacy toggle
     } catch (error) {
       console.error('Error creating channel:', error);
-      const errorMessage =
-        error.response?.data?.message || 'Failed to create channel. Please try again.';
-      alert(errorMessage);
+      alert('Failed to create channel. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -34,13 +32,14 @@ export default function ChannelCreate() {
 
   return (
     <div className="flex flex-col items-center justify-center h-full px-4 bg-gray-900 text-center font-sans">
-      {/* Header */}
+      
       <div className="mb-10">
         <h1 className="text-4xl font-bold text-gray-200">Create Your Channel</h1>
         <p className="mt-2 text-lg text-gray-400">Start connecting with your community in real-time!</p>
       </div>
 
       <div className="flex gap-12 items-center justify-center">
+        
         {/* Channel Creation Form */}
         <div className="w-80 p-8 rounded-2xl bg-slate-800 shadow-lg">
           <h2 className="text-2xl font-semibold text-gray-200 mb-4">Channel Details</h2>
@@ -80,17 +79,11 @@ export default function ChannelCreate() {
         </div>
 
         {/* Channel Icon */}
-        <img
-          className="w-80 h-80"
-          src="/groupIcon.svg"
-          alt="Channel Icon"
-        />
+        <img className="w-80 h-80" src="/groupIcon.svg" alt="Channel Icon" />
       </div>
 
       <div className="mt-10">
-        <p className="text-gray-400 text-md">
-          Ready to create your space? Customize your channel details above.
-        </p>
+        <p className="text-gray-400 text-md">Ready to create your space? Customize your channel details above.</p>
       </div>
     </div>
   );
