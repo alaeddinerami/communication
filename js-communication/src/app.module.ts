@@ -3,12 +3,14 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
-import { ConfigModule } from '@nestjs/config';
-import { FriendsRequestModule } from './friends-request/friends-request/friends-request.module';
 import * as dotenv from 'dotenv';
+import * as Joi from 'joi';
+import { ConfigModule } from '@nestjs/config';
+import { ChatModule } from './chat/chat.module';
+import { VideoCallGateway } from './video-call/videoCall.gateway';
+
 
 dotenv.config();
-
 
 @Module({
   imports: [
@@ -16,9 +18,14 @@ dotenv.config();
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(process.env.DB || 'mongodb://localhost:27017/js-communication'),
     UsersModule,
-    FriendsRequestModule,
+    ConfigModule.forRoot({
+      validationSchema: Joi.object({
+        FRONTEND_URL: Joi.string().required(),
+      }),
+    }),
+    ChatModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, VideoCallGateway],
 })
 export class AppModule {}

@@ -6,6 +6,7 @@ import ChannelCreate from "../components/channelCreate";
 import FriendsPanel from "../components/friendsPanel";
 import Profile from "../pages/profile";
 import ProtectedRoute from "./guard";
+import VideoCall from "../components/videoCall";
 
 const UserRouter = [
     {
@@ -21,6 +22,14 @@ const UserRouter = [
         element: (
             <ProtectedRoute>
                 <UserChat />
+            </ProtectedRoute>
+        )
+    },
+    {
+        path: "/video",
+        element: (
+            <ProtectedRoute>
+                <VideoCall />
             </ProtectedRoute>
         )
     },
